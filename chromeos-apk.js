@@ -15,7 +15,6 @@ function success (appPath) {
 }
 
 module.exports = function (callback) {
-
   program
     .version('4.0.2')
     .option('-t, --tablet', 'Create a tablet version')
@@ -115,5 +114,4 @@ module.exports = function (callback) {
       })
     }
   })
-
 }
