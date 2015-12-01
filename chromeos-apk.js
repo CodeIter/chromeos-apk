@@ -9,7 +9,7 @@ var rl = readline.createInterface(process.stdin, process.stdout)
 
 var parseApk = require('./lib/parseApk')
 
-function success(appPath) {
+function success (appPath) {
   console.log(chalk.green('Directory "', appPath, '" created. Copy that directory onto your Chromebook and use "Load unpacked extension" to load the application.'))
   process.exit(0)
 }
@@ -72,7 +72,7 @@ module.exports = function (callback) {
       createExtension(packageName)
     }
 
-    function createExtension(packageName) {
+    function createExtension (packageName) {
       var templatePath = path.join(__dirname, '_template')
       var appPath = path.join(packageName + '.android')
 
