@@ -59,8 +59,7 @@ module.exports = function (callback) {
           console.log(chalk.red('Package names do not contain spaces'))
           console.log('They usually look like com.application.developer or com.website.www')
           process.exit(0)
-        }
-        else {
+        } else {
           createExtension(text)
         }
       })
