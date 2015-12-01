@@ -1,3 +1,6 @@
+var encoding = 'utf-8'
+var lang = 'en'
+
 var path = require('path')
 var fs = require('fs')
 var readline = require('readline')
@@ -82,8 +85,8 @@ module.exports = function (callback) {
 
         fs.writeFileSync(path.join(appPath, 'vendor', 'chromium', 'crx', 'custom-android-release-1400197.apk'), fs.readFileSync(apk))
 
-        var manifest = JSON.parse(fs.readFileSync(path.join(templatePath, 'manifest.json'), 'utf-8'))
-        var messages = JSON.parse(fs.readFileSync(path.join(templatePath, '_locales', 'en', 'messages.json'), 'utf-8'))
+        var manifest = JSON.parse(fs.readFileSync(path.join(templatePath, 'manifest.json'), encoding))
+        var messages = JSON.parse(fs.readFileSync(path.join(templatePath, '_locales', lang, 'messages.json'), encoding))
         manifest.arc_metadata.name = packageName
         manifest.arc_metadata.packageName = packageName
         manifest.version = '1337'
@@ -106,7 +109,7 @@ module.exports = function (callback) {
         }
 
         fs.writeFileSync(path.join(appPath, 'manifest.json'), JSON.stringify(manifest, null, 2))
-        fs.writeFileSync(path.join(appPath, '_locales', 'en', 'messages.json'), JSON.stringify(messages, null, 2))
+        fs.writeFileSync(path.join(appPath, '_locales', lang, 'messages.json'), JSON.stringify(messages, null, 2))
 
         // done.
         callback(appPath)
