@@ -1,23 +1,39 @@
 /**
  * @TODO enhance code with function in separate file and import them
  */
-var encoding = 'utf-8'                          // text encoding
-var lang = 'en'                                 // support language
-var locale_file = 'messages.' + lang + '.json'  // name of locale file
 
+// import filesystem
 var path = require('path')
 var fs = require('fs')
 var readline = require('readline')
+var rl = readline.createInterface(process.stdin, process.stdout)
 
+// import cli
 var program = require('commander')
 var ncp = require('ncp').ncp
 var chalk = require('chalk')
-var rl = readline.createInterface(process.stdin, process.stdout)
 
 var parseApk = require('./lib/parseApk')
 
+if (process.env.ARCHON_LANG === undefined) {
+  process.env.ARCHON_LANG = 'en'
+}
+
+var compatibleLanguage = ['ar', 'en', 'fr', 'nl']   // compatible language list
+var lang = process.env.ARCHON_LANG                  // support language
+
+if (compatibleLanguage.indexOf(lang) > -1) {
+  // In the array!
+} else {
+  // Not in the array
+  lang = 'en'
+}
+
+var encoding = 'utf-8'                              // text encoding
+var locale_file = 'messages.' + lang + '.json'      // name of locale file
+
 // reading the actually locale file
-var messageFile = JSON.parse(fs.readFileSync(path.join('locales', lang, locale_file), encoding))
+var messageFile = JSON.parse(fs.readFileSync(path.join(__dirname, 'locales', locale_file), encoding))
 
 function success (appPath) {
   var successText = messageFile.directory.success         // reading translated text
