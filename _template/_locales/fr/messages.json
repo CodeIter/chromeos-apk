@@ -2,5 +2,9 @@
    "appNotSupported": {
       "description": "Un message d'erreur apparaît lorsque le GPU de l'ordinateur ne sont pas pris en charge par Chrome.",
       "message": "L'App est pas pris en charge sur cet ordinateur."
+   },
+   "extName": {
+      "description": "Nom de l'extension",
+      "message": "L'App"
    }
 }

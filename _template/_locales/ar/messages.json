@@ -2,5 +2,9 @@
    "appNotSupported": {
       "description": "رسالة خطأ تظهر عندما لا يعتمد كروم GPU الكمبيوتر.",
       "message": "التطبيق غير معتمد لكروم."
+   },
+   "extName": {
+      "description": "اسم التطبيق",
+      "message": "التطبيق"
    }
 }
