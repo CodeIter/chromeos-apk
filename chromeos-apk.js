@@ -63,9 +63,9 @@ module.exports = function (callback) {
           createExtension(text)
         }
       })
-      .on('close', function () {
-        process.exit(0)
-      })
+        .on('close', function () {
+          process.exit(0)
+        })
     } else {
       createExtension(packageName)
     }
