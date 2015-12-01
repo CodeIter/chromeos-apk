@@ -1,0 +1,27 @@
+{
+  /*for 'function success (appPath)' */
+   "directory":{
+     "success":"Directory \" $appPath \" created. Copy that directory onto your Chromebook and use \"Load unpacked extension\" to load the application.",
+     "fail":"Directory \" $appPath \" not created. try again or report problem to https://github.com/vladikoff/chromeos-apk/issues ."
+   },
+   
+   /* for  command-line arguments */
+   "option":{
+     "tablet":"Create a tablet version",
+     "scale":"Enable application window scaling",
+     "extentionName":"Extension display name",
+     "pathToApkFile":"path_to_apk_file"
+   },
+   
+   /* for  'parseApk(apk, function (err, data)' */
+   "parseApk":{
+     "loadFaild":"Failed to load APK",
+     "parsePackageName":"Failed to parse package name in the APK.",
+     "Unknown_APKPackage_1":"Unknown APK package.",
+     "Unknown_APKPackage_2":"Please enter the package name (i.e \"com.skype.raider\", if you get this wrong your app will NOT work): ",
+     "PackageNames_NotEndWith_Apk_1":"Package names do not end with .apk",
+     "PackageNames_NotEndWith_Apk_2":"They usually look like com.application.developer or com.website.www",
+     "PackageNames_NotEndWith_Space_1":"Package names do not contain spaces",
+     "PackageNames_NotEndWith_Space_2":"They usually look like com.application.developer or com.website.www"
+   }
+}

@@ -1,5 +1,9 @@
-var encoding = 'utf-8'
-var lang = 'en'
+/**
+ * @TODO enhance code with function in separate file and import them
+ */
+var encoding = 'utf-8'                          // text encoding
+var lang = 'en'                                 // support language
+var locale_file = 'messages.' + lang + '.json'  // name of locale file
 
 var path = require('path')
 var fs = require('fs')
@@ -12,18 +16,23 @@ var rl = readline.createInterface(process.stdin, process.stdout)
 
 var parseApk = require('./lib/parseApk')
 
+// reading the actually locale file
+var messageFile = JSON.parse(fs.readFileSync(path.join('locales', lang, locale_file), encoding))
+
 function success (appPath) {
-  console.log(chalk.green('Directory "', appPath, '" created. Copy that directory onto your Chromebook and use "Load unpacked extension" to load the application.'))
+  var successText = messageFile.directory.success         // reading translated text
+  successText = successText.replace('$appPath', appPath)  // inject appPath to translated text
+  console.log(chalk.green(successText))                   // print success text
   process.exit(0)
 }
 
 module.exports = function (callback) {
   program
     .version('4.0.2')
-    .option('-t, --tablet', 'Create a tablet version')
-    .option('-s, --scale', 'Enable application window scaling')
-    .option('-n, --ext-name [value]', 'Extension display name')
-    .usage('<path_to_apk_file ...>')
+    .option('-t, --tablet', messageFile.option.tablet)                  // reading translated text
+    .option('-s, --scale', messageFile.option.scale)                    // reading translated text
+    .option('-n, --ext-name [value]', messageFile.option.extentionName) // reading translated text
+    .usage('<' + messageFile.option.pathToApkFile + ' ...>')            // reading translated text
     .parse(process.argv)
 
   var apk = program.args[0]
@@ -36,7 +45,8 @@ module.exports = function (callback) {
 
   parseApk(apk, function (err, data) {
     if (err) {
-      console.log(chalk.yellow('Failed to load APK'))
+      // reading translated text
+      console.log(chalk.yellow(messageFile.option.loadFaild))
     }
 
     var packageName = null
@@ -44,23 +54,30 @@ module.exports = function (callback) {
     try {
       packageName = data.package
     } catch (e) {
-      console.log(chalk.yellow('Failed to parse package name in the APK.'))
+      // reading translated text
+      console.log(chalk.yellow(messageFile.parseApk.parsePackageName))
     }
 
     if (!packageName) {
-      console.log(chalk.yellow('Unknown APK package.'))
-      console.log('Please enter the package name (i.e "com.skype.raider", if you get this wrong your app will NOT work): ')
+      // reading translated text
+      console.log(chalk.yellow(messageFile.parseApk.Unknown_APKPackage_1))
+      // reading translated text
+      console.log(messageFile.parseApk.Unknown_APKPackage_2)
       rl.prompt()
       rl.on('line', function (text) {
         text = text.trim()
 
         if (/\.apk$/.test(text)) {
-          console.log(chalk.red('Package names do not end with .apk'))
-          console.log('They usually look like com.application.developer or com.website.www')
+      // reading translated text
+          console.log(chalk.red(messageFile.parseApk.PackageNames_NotEndWith_Apk_1))
+      // reading translated text
+          console.log(messageFile.parseApk.PackageNames_NotEndWith_Apk_2)
           process.exit(0)
         } else if (text.indexOf(' ') !== -1) {
-          console.log(chalk.red('Package names do not contain spaces'))
-          console.log('They usually look like com.application.developer or com.website.www')
+      // reading translated text
+          console.log(chalk.red(messageFile.parseApk.PackageNames_NotEndWith_Space_1))
+      // reading translated text
+          console.log(messageFile.parseApk.PackageNames_NotEndWith_Space_2)
           process.exit(0)
         } else {
           createExtension(text)
