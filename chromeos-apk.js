@@ -51,9 +51,6 @@ module.exports = function (callback) {
     .usage('<' + messageFile.option.pathToApkFile + ' ...>')            // reading translated text
     .parse(process.argv)
 
-<<<<<<< HEAD
-
-=======
   if (process.argv.length === 2) {
     program.outputHelp()
     process.exit(0)
@@ -61,7 +58,6 @@ module.exports = function (callback) {
 
   var apk = program.args[0]
   callback = callback || success
->>>>>>> ichigotake/show-help
 
   if (!apk) {
     program.outputHelp()
