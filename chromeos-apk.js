@@ -82,8 +82,8 @@ module.exports = function (callback) {
 
         fs.writeFileSync(path.join(appPath, 'vendor', 'chromium', 'crx', 'custom-android-release-1400197.apk'), fs.readFileSync(apk))
 
-        var manifest = JSON.parse(fs.readFileSync(path.join(templatePath, 'manifest.json')))
-        var messages = JSON.parse(fs.readFileSync(path.join(templatePath, '_locales', 'en', 'messages.json')))
+        var manifest = JSON.parse(fs.readFileSync(path.join(templatePath, 'manifest.json'), 'utf-8'))
+        var messages = JSON.parse(fs.readFileSync(path.join(templatePath, '_locales', 'en', 'messages.json'), 'utf-8'))
         manifest.arc_metadata.name = packageName
         manifest.arc_metadata.packageName = packageName
         manifest.version = '1337'
