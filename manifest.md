@@ -1,14 +1,15 @@
 # `manifest.json` configuration
 
 ## `arc_metadata`
+
 Raw list of possible values for `arc_metadata`:
 
-```
+```json
 "arc_metadata": {
   "allowEmptyActivityStack": false,
   "apkList": [
     "custom-android-release-1400197.apk"
-  ], 
+  ],
   "canRotate": false,
   "disableAutoBackButton": false,
   "enableAdb": false,
@@ -38,9 +39,11 @@ Raw list of possible values for `arc_metadata`:
 
 ## `file_handlers`
 
-See https://developer.chrome.com/apps/manifest/file_handlers. 
-This is useful for Chrome OS users. You can experiment opening files with certain Android apps by setting their file handlers. Add to `manifest.json` in your app: 
-```
+See [https://developer.chrome.com/apps/manifest/file_handlers .](https://developer.chrome.com/apps/manifest/file_handlers)
+This is useful for Chrome OS users. You can experiment opening files with certain Android apps by setting their file handlers.
+Add to `manifest.json` in your app:
+
+```json
  "file_handlers": {
       "any": {
          "title": "Open with SOME_APP",
@@ -48,5 +51,6 @@ This is useful for Chrome OS users. You can experiment opening files with certai
       }
   },
 ```
-This way your file manager will get this option: 
-<img src="http://i.imgur.com/zTjPaHc.png" width="250px" />
+
+This way your file manager will get this option:
+![image](https://googledrive.com/host/0BzQL8Rq6oc8_bVpfc0hjM3BsVk0)
