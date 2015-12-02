@@ -2,13 +2,13 @@
  * @TODO enhance code with function in separate file and import them
  */
 
-// import filesystem
+// Import filesystem
 var path = require('path')
 var fs = require('fs')
 var readline = require('readline')
 var rl = readline.createInterface(process.stdin, process.stdout)
 
-// import cli
+// Import cli
 var program = require('commander')
 var ncp = require('ncp').ncp
 var chalk = require('chalk')
@@ -19,8 +19,8 @@ if (process.env.ARCHON_LANG === undefined) {
   process.env.ARCHON_LANG = 'en'
 }
 
-var compatibleLanguage = ['ar', 'en', 'fr', 'nl']   // compatible language list
-var lang = process.env.ARCHON_LANG                  // support language
+var compatibleLanguage = ['ar', 'en', 'fr', 'nl']   // Compatible language list
+var lang = process.env.ARCHON_LANG                  // Support language
 
 if (compatibleLanguage.indexOf(lang) > -1) {
   // In the array!
@@ -29,26 +29,26 @@ if (compatibleLanguage.indexOf(lang) > -1) {
   lang = 'en'
 }
 
-var encoding = 'utf-8'                              // text encoding
-var locale_file = 'messages.' + lang + '.json'      // name of locale file
+var encoding = 'utf-8'                              // Text encoding
+var locale_file = 'messages.' + lang + '.json'      // Name of locale file
 
-// reading the actually locale file
+// Reading the actually locale file
 var messageFile = JSON.parse(fs.readFileSync(path.join(__dirname, 'locales', locale_file), encoding))
 
 function success (appPath) {
-  var successText = messageFile.directory.success         // reading translated text
-  successText = successText.replace('$appPath', appPath)  // inject appPath to translated text
-  console.log(chalk.green(successText))                   // print success text
+  var successText = messageFile.directory.success         // Reading translated text
+  successText = successText.replace('$appPath', appPath)  // Inject appPath to translated text
+  console.log(chalk.green(successText))                   // Print success text
   process.exit(0)
 }
 
 module.exports = function (callback) {
   program
     .version('4.0.2')
-    .option('-t, --tablet', messageFile.option.tablet)                  // reading translated text
-    .option('-s, --scale', messageFile.option.scale)                    // reading translated text
-    .option('-n, --ext-name [value]', messageFile.option.extentionName) // reading translated text
-    .usage('<' + messageFile.option.pathToApkFile + ' ...>')            // reading translated text
+    .option('-t, --tablet', messageFile.option.tablet)                  // Reading translated text
+    .option('-s, --scale', messageFile.option.scale)                    // Reading translated text
+    .option('-n, --ext-name [value]', messageFile.option.extentionName) // Reading translated text
+    .usage('<' + messageFile.option.pathToApkFile + ' ...>')            // Reading translated text
     .parse(process.argv)
 
   if (process.argv.length === 2) {
@@ -66,7 +66,7 @@ module.exports = function (callback) {
 
   parseApk(apk, function (err, data) {
     if (err) {
-      // reading translated text
+      // Reading translated text
       console.log(chalk.yellow(messageFile.option.loadFaild))
     }
 
@@ -75,29 +75,29 @@ module.exports = function (callback) {
     try {
       packageName = data.package
     } catch (e) {
-      // reading translated text
+      // Reading translated text
       console.log(chalk.yellow(messageFile.parseApk.parsePackageName))
     }
 
     if (!packageName) {
-      // reading translated text
+      // Reading translated text
       console.log(chalk.yellow(messageFile.parseApk.Unknown_APKPackage_1))
-      // reading translated text
+      // Reading translated text
       console.log(messageFile.parseApk.Unknown_APKPackage_2)
       rl.prompt()
       rl.on('line', function (text) {
         text = text.trim()
 
         if (/\.apk$/.test(text)) {
-      // reading translated text
+      // Reading translated text
           console.log(chalk.red(messageFile.parseApk.PackageNames_NotEndWith_Apk_1))
-      // reading translated text
+      // Reading translated text
           console.log(messageFile.parseApk.PackageNames_NotEndWith_Apk_2)
           process.exit(0)
         } else if (text.indexOf(' ') !== -1) {
-      // reading translated text
+      // Reading translated text
           console.log(chalk.red(messageFile.parseApk.PackageNames_NotEndWith_Space_1))
-      // reading translated text
+      // Reading translated text
           console.log(messageFile.parseApk.PackageNames_NotEndWith_Space_2)
           process.exit(0)
         } else {
@@ -149,7 +149,7 @@ module.exports = function (callback) {
         fs.writeFileSync(path.join(appPath, 'manifest.json'), JSON.stringify(manifest, null, 2))
         fs.writeFileSync(path.join(appPath, '_locales', lang, 'messages.json'), JSON.stringify(messages, null, 2))
 
-        // done.
+        // Done.
         callback(appPath)
       })
     }
