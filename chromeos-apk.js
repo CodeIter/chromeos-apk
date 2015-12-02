@@ -30,10 +30,10 @@ if (compatibleLanguage.indexOf(lang) > -1) {
 }
 
 var encoding = 'utf-8'                              // Text encoding
-var locale_file = 'messages.' + lang + '.json'      // Name of locale file
+var localeFile = 'messages.' + lang + '.json'      // Name of locale file
 
 // Reading the actually locale file
-var messageFile = JSON.parse(fs.readFileSync(path.join(__dirname, 'locales', locale_file), encoding))
+var messageFile = JSON.parse(fs.readFileSync(path.join(__dirname, 'locales', localeFile), encoding))
 
 function success (appPath) {
   var successText = messageFile.directory.success         // Reading translated text
