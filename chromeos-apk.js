@@ -89,15 +89,15 @@ module.exports = function (callback) {
         text = text.trim()
 
         if (/\.apk$/.test(text)) {
-      // Reading translated text
+          // Reading translated text
           console.log(chalk.red(messageFile.parseApk.PackageNames_NotEndWith_Apk_1))
-      // Reading translated text
+          // Reading translated text
           console.log(messageFile.parseApk.PackageNames_NotEndWith_Apk_2)
           process.exit(0)
         } else if (text.indexOf(' ') !== -1) {
-      // Reading translated text
+          // Reading translated text
           console.log(chalk.red(messageFile.parseApk.PackageNames_NotEndWith_Space_1))
-      // Reading translated text
+          // Reading translated text
           console.log(messageFile.parseApk.PackageNames_NotEndWith_Space_2)
           process.exit(0)
         } else {
