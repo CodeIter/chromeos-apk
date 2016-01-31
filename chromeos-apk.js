@@ -35,7 +35,7 @@ var localeFile = 'messages.' + lang + '.json'      // Name of locale file
 // Reading the actually locale file
 var messageFile = JSON.parse(fs.readFileSync(path.join(__dirname, 'locales', localeFile), encoding))
 
-function success (appPath) {
+function success(appPath) {
   var successText = messageFile.directory.success         // Reading translated text
   successText = successText.replace('$appPath', appPath)  // Inject appPath to translated text
   console.log(chalk.green(successText))                   // Print success text
@@ -111,7 +111,7 @@ module.exports = function (callback) {
       createExtension(packageName)
     }
 
-    function createExtension (packageName) {
+    function createExtension(packageName) {
       var templatePath = path.join(__dirname, '_template')
       var appPath = path.join(packageName + '.android')
 
@@ -129,8 +129,8 @@ module.exports = function (callback) {
         manifest.arc_metadata.packageName = packageName
         manifest.version = '1337'
 
-        if (program.extName) {
-          messages.extName.message = program.extName
+        if (program.extName && typeof program.name !== 'function') {
+          messages.extName.message = program.extName;
         } else if (packageName) {
           messages.extName.message = packageName
         } else {
