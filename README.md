@@ -116,3 +116,9 @@ Read [the manifest guide](manifest.md) to tweak applications. Android `Menu` key
 | [![twitter/vladikoff](https://avatars3.githubusercontent.com/u/128755?s=70)](https://twitter.com/vladikoff "Follow @vladikoff on Twitter") |
 |---|
 | [@vladikoff](https://twitter.com/vladikoff) |
+
+### Collaborators
+
+| [![Github/CodeIter](https://avatars3.githubusercontent.com/u/8684853?v=3&s=70)](https://github.com/CodeIter "CodeIter at Github") |
+|---|
+| [@CodeIter](https://github.com/CodeIter) |
